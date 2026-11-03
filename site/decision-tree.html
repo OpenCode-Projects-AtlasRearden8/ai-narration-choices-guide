@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision Tree — The Audiobook Voice Decision Guide</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="topnav">
+  <a class="brand" href="index.html">Audiobook Voice Guide</a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="decision-tree.html">Decision Tree</a>
+    <a href="scorecard.html">Listening Rubric</a>
+    <a href="pages/00-start-here.html">Chapters</a>
+    <a href="pages/ws-01-voice-decision-worksheet.html">Worksheets</a>
+  </div>
+</nav>
+<main>
+  <h1>The Decision Tree</h1>
+  <p><em>Four questions, one defensible answer. Mirrors Worksheet 1 and
+  <a href="pages/01-human-vs-ai-voice.html">Chapter 1</a> — full reasoning lives in the
+  chapters, not in this widget.</em></p>
+
+  <div class="widget">
+    <fieldset>
+      <legend>1. What kind of book is it?</legend>
+      <label class="choice"><input type="radio" name="bookType" value="fiction-dialogue"> Fiction with lots of dialogue and distinct characters</label>
+      <label class="choice"><input type="radio" name="bookType" value="fiction-quiet"> Quiet fiction / memoir / poetry</label>
+      <label class="choice"><input type="radio" name="bookType" value="nonfiction"> Nonfiction, self-help, or reference</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. What's your realistic budget rung?</legend>
+      <label class="choice"><input type="radio" name="budgetRung" value="0"> Rung 0 — DIY, essentially $0 cash, plenty of hours</label>
+      <label class="choice"><input type="radio" name="budgetRung" value="1"> Rung 1 — under about $250 (AI voice)</label>
+      <label class="choice"><input type="radio" name="budgetRung" value="2"> Rung 2 — roughly $250–$1,000 (early-career human)</label>
+      <label class="choice"><input type="radio" name="budgetRung" value="3"> Rung 3 — roughly $1,000–$2,500 (established human)</label>
+      <label class="choice"><input type="radio" name="budgetRung" value="4"> Rung 4 — $2,500+ (experienced or union pro)</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>3. What's your schedule honesty?</legend>
+      <label class="choice"><input type="radio" name="schedule" value="this-month"> I want this narrated this month</label>
+      <label class="choice"><input type="radio" name="schedule" value="patient"> I can be patient for the right result</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4. Do you want the author's own voice as the brand?</legend>
+      <label class="choice"><input type="radio" name="authorVoice" value="yes"> Yes — it's the whole brand</label>
+      <label class="choice"><input type="radio" name="authorVoice" value="no"> No — results matter more than whose mouth</label>
+      <label class="choice"><input type="radio" name="authorVoice" value="unsure"> Unsure</label>
+    </fieldset>
+
+    <button class="btn" id="goBtn">Show my answer</button>
+    <button class="btn ghost" id="printBtn" type="button">Print this page</button>
+
+    <div class="result" id="result" style="display:none">
+      <h3 id="resultTitle"></h3>
+      <p id="resultWhy"></p>
+      <p id="resultNext"></p>
+    </div>
+  </div>
+
+  <p class="no-print"><em>Then verify your platform actually allows what you chose:
+  <a href="pages/02-platform-rules.html">Chapter 2 — platform rules in plain words</a>.</em></p>
+</main>
+<footer>
+  <p><strong>The Audiobook Voice Decision Guide</strong> — by <strong>Asdale Dynamics, LLC</strong>.
+  Plain-words AI education. Companion to <em>Audiobook Recording Handbook</em>.</p>
+  <p>No vendor kickbacks, no affiliate links. Copyright (c) 2026 Asdale Dynamics, LLC. MIT licensed.</p>
+</footer>
+<script src="js/decision-tree.js"></script>
+<script>
+(function () {
+  var NEXT = {
+    'human': 'Next step: score narrator samples with the <a href="scorecard.html">listening rubric</a>, and budget with <a href="pages/ws-03-budget-ladder-planner.html">Worksheet 3</a>.',
+    'ai': 'Next step: check your platform\u2019s AI rules in <a href="pages/02-platform-rules.html">Chapter 2</a>, then score the AI sample the same way: <a href="scorecard.html">listening rubric</a>.',
+    'diy': 'Next step: the companion Audiobook Recording Handbook covers the craft. The launch-day QC chapter (<a href="pages/06-launch-day-qc.html">Chapter 6</a>) still applies to you.',
+    'consider-waiting': 'Next step: run the payback math in <a href="pages/ws-03-budget-ladder-planner.html">Worksheet 3</a>, or read about shipping cheap now in <a href="pages/05-budget-ladders.html">Chapter 5</a>.',
+    'cheap-ai-now': 'Next step: disclose honestly, price normally, and use <a href="pages/06-launch-day-qc.html">Chapter 6</a> on launch day.'
+  };
+  document.getElementById('goBtn').addEventListener('click', function () {
+    var val = function (name) {
+      var el = document.querySelector('input[name="' + name + '"]:checked');
+      return el ? el.value : null;
+    };
+    var bookType = val('bookType');
+    var rungRaw = val('budgetRung');
+    var recommend = (window.decisionTree || {}).recommend;
+    if (!recommend) return;
+    var r = recommend({
+      bookType: bookType || undefined,
+      budgetRung: rungRaw === null ? undefined : parseInt(rungRaw, 10),
+      schedule: val('schedule') || undefined,
+      authorVoice: val('authorVoice') || undefined
+    });
+    document.getElementById('resultTitle').textContent = r.title;
+    document.getElementById('resultWhy').textContent = r.why;
+    document.getElementById('resultNext').innerHTML = NEXT[r.decision] || '';
+    document.getElementById('result').style.display = 'block';
+  });
+  document.getElementById('printBtn').addEventListener('click', function () {
+    window.print();
+  });
+})();
+</script>
+</body>
+</html>

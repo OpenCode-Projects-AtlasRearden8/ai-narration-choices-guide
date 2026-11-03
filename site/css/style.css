@@ -1,0 +1,158 @@
+/* The Audiobook Voice Decision Guide — Asdale Dynamics, LLC */
+:root {
+  --bg: #faf7f2;
+  --ink: #26221c;
+  --muted: #6b635a;
+  --accent: #9a5b3c;
+  --accent-soft: #f1e2d8;
+  --line: #e3dbd1;
+  --card: #ffffff;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  line-height: 1.65;
+}
+.topnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.5rem;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+.topnav .brand {
+  font-weight: bold;
+  color: var(--accent);
+  text-decoration: none;
+}
+.topnav .links a {
+  color: var(--ink);
+  text-decoration: none;
+  margin-left: 1rem;
+  font-family:ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.95rem;
+}
+.topnav .links a:hover { color: var(--accent); }
+main { max-width: 46rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+h1, h2, h3 { line-height: 1.25; }
+h1 { font-size: 1.9rem; margin: 1.5rem 0 0.5rem; }
+h2 { font-size: 1.4rem; margin-top: 2.2rem; }
+h3 { font-size: 1.15rem; margin-top: 1.6rem; }
+a { color: var(--accent); }
+p.crumb {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 1.5rem 0 -1rem;
+}
+code {
+  background: var(--accent-soft);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+pre code { display: block; padding: 0.8rem; overflow-x: auto; }
+blockquote {
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  margin: 1.2rem 0;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0 6px 6px 0;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+}
+th, td { border: 1px solid var(--line); padding: 0.5rem 0.7rem; text-align: left; }
+th { background: var(--accent-soft); }
+tr:nth-child(even) td { background: rgba(255, 255, 255, 0.55); }
+hr { border: none; border-top: 1px solid var(--line); margin: 2.5rem 0; }
+ul li, ol li { margin: 0.35rem 0; }
+li.check { list-style: none; margin-left: -1.4rem; }
+li.check label { display: flex; gap: 0.6rem; align-items: baseline; cursor: pointer; }
+li.check input { accent-color: var(--accent); transform: translateY(0.15rem); }
+li.check span { display: block; }
+li.check span:hover { color: var(--accent); }
+footer {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+.cardgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  color: var(--ink);
+  display: block;
+}
+.card:hover { border-color: var(--accent); }
+.card .k {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.card h2 { margin: 0.3rem 0 0.4rem; font-size: 1.1rem; }
+.card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+/* decision tree + scorecard widgets */
+.widget {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+.widget fieldset { border: none; margin: 0 0 1.2rem; padding: 0; }
+.widget legend { font-weight: bold; margin-bottom: 0.5rem; }
+.widget label.choice { display: block; margin: 0.3rem 0; cursor: pointer; }
+.widget .result {
+  margin-top: 1.2rem;
+  padding: 1rem 1.2rem;
+  background: var(--accent-soft);
+  border-radius: 6px;
+}
+.widget .result h3 { margin-top: 0; }
+.btn {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+.scoreinput { width: 100%; display: block; margin: 0.4rem 0 0; }
+#rubricTotal { font-size: 1.6rem; font-weight: bold; color: var(--accent); }
+input[type="range"] { accent-color: var(--accent); width: 100%; }
+@media print {
+  .topnav, footer, .no-print { display: none; }
+  body { background: #fff; font-size: 12pt; }
+  .cardgrid { display: block; }
+  .card { page-break-inside: avoid; border: none; padding: 0.3rem; }
+}

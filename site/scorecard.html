@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Listening Rubric Scorer — The Audiobook Voice Decision Guide</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="topnav">
+  <a class="brand" href="index.html">Audiobook Voice Guide</a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="decision-tree.html">Decision Tree</a>
+    <a href="scorecard.html">Listening Rubric</a>
+    <a href="pages/00-start-here.html">Chapters</a>
+    <a href="pages/ws-01-voice-decision-worksheet.html">Worksheets</a>
+  </div>
+</nav>
+<main>
+  <h1>Listening Rubric Scorer</h1>
+  <p><em>Score any narration sample — human or AI — on five dimensions (1–5 each), from
+  <a href="pages/03-sample-listening-rubric.html">Chapter 3</a>. Listen twice on
+  different days; your ears otherwise flatter or penalize at random.</em></p>
+
+  <div class="widget">
+    <fieldset>
+      <legend>1. Voice–book fit — does the voice belong in this book's world?</legend>
+      <label class="scoreinput"><input type="range" min="1" max="5" value="3" data-dim="0"> <output>3</output></label>
+    </fieldset>
+    <fieldset>
+      <legend>2. Pacing and rhythm — conducted, or just steady?</legend>
+      <label class="scoreinput"><input type="range" min="1" max="5" value="3" data-dim="1"> <output>3</output></label>
+    </fieldset>
+    <fieldset>
+      <legend>3. Character differentiation — who's speaking without the text saying so?</legend>
+      <label class="scoreinput"><input type="range" min="1" max="5" value="3" data-dim="2"> <output>3</output></label>
+    </fieldset>
+    <fieldset>
+      <legend>4. Technical polish — breaths, clicks, echo, clipping (earbuds + phone speaker)</legend>
+      <label class="scoreinput"><input type="range" min="1" max="5" value="3" data-dim="3"> <output>3</output></label>
+    </fieldset>
+    <fieldset>
+      <legend>5. Consistency across chapters — middle chapters checked, not just the opener</legend>
+      <label class="scoreinput"><input type="range" min="1" max="5" value="3" data-dim="4"> <output>3</output></label>
+    </fieldset>
+
+    <p>Total: <span id="rubricTotal">15</span> / 25 · Band: <strong id="rubricBand"></strong></p>
+    <div class="result" id="rubricResult" style="display:none">
+      <h3 id="rubricVerdict"></h3>
+      <p id="rubricAdvice"></p>
+    </div>
+  </div>
+
+  <p><em>Any dimension at 2 or below is a red flag even at a passing total — walk-away
+  territory described in <a href="pages/03-sample-listening-rubric.html">Chapter 3</a>.
+  The printable log sheet is <a href="pages/ws-02-listening-rubric-scorecard.html">Worksheet 2</a>.</em></p>
+</main>
+<footer>
+  <p><strong>The Audiobook Voice Decision Guide</strong> — by <strong>Asdale Dynamics, LLC</strong>.
+  Plain-words AI education. Companion to <em>Audiobook Recording Handbook</em>.</p>
+  <p>No vendor kickbacks, no affiliate links. Copyright (c) 2026 Asdale Dynamics, LLC. MIT licensed.</p>
+</footer>
+<script src="js/rubric.js"></script>
+<script>
+(function () {
+  var result = (window.rubric || {}).evaluate;
+  if (!result) return;
+  function readScores() {
+    var lists = Array.prototype.slice.call(document.querySelectorAll('input[data-dim]'));
+    return lists.map(function (el) { return parseInt(el.value, 10); });
+  }
+  function update() {
+    document.querySelectorAll('input[data-dim]').forEach(function (el) {
+      el.parentElement.querySelector('output').textContent = el.value;
+    });
+    var ev = result(readScores());
+    document.getElementById('rubricTotal').textContent = ev.total;
+    document.getElementById('rubricBand').textContent = ev.band.label;
+    document.getElementById('rubricResult').style.display = 'block';
+    var verdict = ev.band.label;
+    if (ev.broken) verdict += ' (with a red flag: a dimension scored 2 or lower)';
+    document.getElementById('rubricVerdict').textContent = verdict;
+    document.getElementById('rubricAdvice').textContent = {
+      'offer': 'Score the deal. Log it in Worksheet 2 and confirm the sample terms.',
+      'second-audition': 'Worth one more audition of a different narrator before committing.',
+      'cross-off': 'Cross this candidate off and move to the next sample.',
+      'reject': 'Reject. Whatever it costs, it is not worth it.'
+    }[ev.band.action];
+  }
+  document.querySelectorAll('input[data-dim]').forEach(function (el) {
+    el.addEventListener('input', update);
+  });
+  update();
+})();
+</script>
+</body>
+</html>

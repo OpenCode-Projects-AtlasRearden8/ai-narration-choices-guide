@@ -1,0 +1,20 @@
+{
+  "name": "audiobook-voice-decision-guide",
+  "version": "1.0.0",
+  "description": "Author's manual on audiobook narration choices: human vs AI voice, platform rules, listening rubrics, rights and disclosure, budget ladders, launch-day QC. By Asdale Dynamics, LLC.",
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "test": "node tests/test-site.mjs",
+    "start": "node scripts/serve.mjs"
+  },
+  "author": "Asdale Dynamics, LLC",
+  "keywords": [
+    "audiobook",
+    "acx",
+    "ai-narration",
+    "self-publishing",
+    "per-finished-hour",
+    "beginner-friendly"
+  ]
+}

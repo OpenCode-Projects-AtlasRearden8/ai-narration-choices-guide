@@ -1,0 +1,57 @@
+[
+  {
+    "source": "docs/00-start-here.md",
+    "output": "site/pages/00-start-here.html",
+    "title": "Start Here: Choosing Your Audiobook Narration"
+  },
+  {
+    "source": "docs/01-human-vs-ai-voice.md",
+    "output": "site/pages/01-human-vs-ai-voice.html",
+    "title": "Chapter 1: Human vs AI Voice — The Honest Trade-offs"
+  },
+  {
+    "source": "docs/02-platform-rules.md",
+    "output": "site/pages/02-platform-rules.html",
+    "title": "Chapter 2: Platform Rules, Compared in Plain Words"
+  },
+  {
+    "source": "docs/03-sample-listening-rubric.md",
+    "output": "site/pages/03-sample-listening-rubric.html",
+    "title": "Chapter 3: The Sample-Listening Rubric"
+  },
+  {
+    "source": "docs/04-rights-and-disclosure.md",
+    "output": "site/pages/04-rights-and-disclosure.html",
+    "title": "Chapter 4: Rights and Disclosure Basics"
+  },
+  {
+    "source": "docs/05-budget-ladders.md",
+    "output": "site/pages/05-budget-ladders.html",
+    "title": "Chapter 5: Budget Ladders"
+  },
+  {
+    "source": "docs/06-launch-day-qc.md",
+    "output": "site/pages/06-launch-day-qc.html",
+    "title": "Chapter 6: The Launch-Day QC Checklist"
+  },
+  {
+    "source": "docs/worksheets/ws-01-voice-decision-worksheet.md",
+    "output": "site/pages/ws-01-voice-decision-worksheet.html",
+    "title": "Worksheet 1: Voice Decision Worksheet"
+  },
+  {
+    "source": "docs/worksheets/ws-02-listening-rubric-scorecard.md",
+    "output": "site/pages/ws-02-listening-rubric-scorecard.html",
+    "title": "Worksheet 2: Sample-Listening Rubric Scorecard"
+  },
+  {
+    "source": "docs/worksheets/ws-03-budget-ladder-planner.md",
+    "output": "site/pages/ws-03-budget-ladder-planner.html",
+    "title": "Worksheet 3: Budget-Ladder Planner"
+  },
+  {
+    "source": "docs/worksheets/ws-04-launch-day-qc-checklist.md",
+    "output": "site/pages/ws-04-launch-day-qc-checklist.html",
+    "title": "Worksheet 4: Launch-Day QC Checklist"
+  }
+]
